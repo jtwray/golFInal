@@ -1,2 +1,2 @@
-# golFInal
+# GOL_TestDrivenDevelopment
 Created with CodeSandbox
