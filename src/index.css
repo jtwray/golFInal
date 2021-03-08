@@ -13,3 +13,54 @@ body {
   background-image: url("./sw-bg.jpg");
   background-size: cover;
 }
+.drawerNavLinks a {
+  text-shadow: 0.4px 0.4px 1px white;
+}
+.drawerNavLinks a:hover {
+  filter: invert(90%);
+  transform: filter;
+  transition: 0.3s ease;
+}
+
+.active {
+  text-shadow: -1px -1px 0px white, 1.2px -1.2px 1px silver,
+    -1.2px 1.2px 1px black;
+  border-bottom: grey 1px solid;
+}
+
+.hamburger.controls.drawer {
+  position: fixed;
+  right: 1%;
+  top: 1px;
+}
+.hamburger.controls.lights {
+  position: fixed;
+  right: 1%;
+  top: 25px;
+}
+
+@media screen and (min-width: 600px) {
+  .hamburger.controls.drawer {
+    position: fixed;
+    right: 1%;
+    top: 1px;
+  }
+  .hamburger.controls.lights {
+    position: fixed;
+    right: 1%;
+    top: 25px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .hamburger.controls.drawer {
+    position: fixed;
+    right: 1%;
+    top: 1px;
+  }
+  .hamburger.controls.lights {
+    position: fixed;
+    right: 1%;
+    top: 25px;
+  }
+}

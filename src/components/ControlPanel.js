@@ -3,6 +3,7 @@ import { ButtonGroup, Spacer, Button, HStack } from "@chakra-ui/react";
 
 import SpeedSlider from "./SpeedSlider";
 import SizeSlider from "./SizeSlider";
+import Timer from "./Timer";
 
 export default function ControlPanel({
   toggleStart,
@@ -16,15 +17,17 @@ export default function ControlPanel({
   delay,
   dispatch,
   setSpeed,
-  setSize
+  setSize,
+  state
 }) {
   return (
     <>
       <HStack
         display="flex"
-        w="80vw"
+        w="500px"
         border="outset 5px indigo"
-        height="auto"
+        borderBottom="inset 4px lightgrey"
+        height="175px"
         p="3"
         boxShadow="1px 1px 15px grey"
         background="darkgrey"
@@ -39,16 +42,17 @@ export default function ControlPanel({
           borderRadius="10px"
           display="flex"
           w="200px"
-          h="200px"
+          h="160px"
           justifyContent="space-evenly"
           color="rgb(24,24,24)"
           fontSize="36px"
           flexWrap="wrap"
         >
           <Button
-            borderRadius="10px"
-            width="44%"
-            height="45%"
+            // width="44%"
+            // height="45%"
+            width="79%"
+            height="20%"
             border="double 4px silver"
             boxShadow="1px 1px 10px grey,2px 3px 0px indigo"
             fontSize="1.6rem"
@@ -58,8 +62,10 @@ export default function ControlPanel({
             {isRunning ? "STOP" : "START"}
           </Button>
           <Button
-            width="44%"
-            height="45%"
+            // width="44%"
+            // height="45%"
+            width="79%"
+            height="20%"
             border="double 4px silver"
             boxShadow="1px 1px 10px grey,2px 3px 0px indigo"
             fontSize="1.4rem"
@@ -69,8 +75,10 @@ export default function ControlPanel({
             RANDOM
           </Button>
           <Button
-            width="44%"
-            height="45%"
+            // width="44%"
+            // height="45%"
+            width="79%"
+            height="20%"
             border="double 4px silver"
             boxShadow="1px 1px 10px grey,2px 3px 0px indigo"
             fontSize="1.6rem"
@@ -80,8 +88,10 @@ export default function ControlPanel({
             CLEAR
           </Button>
           <Button
-            width="44%"
-            height="45%"
+            // width="44%"
+            // height="45%"
+            width="79%"
+            height="20%"
             border="double 4px silver"
             boxShadow="1px 1px 10px grey,2px 3px 0px indigo"
             fontSize="1.6rem"
@@ -97,8 +107,8 @@ export default function ControlPanel({
           id="controlPanelBox_Slides_Data"
           style={{
             flex: "3 4 74%",
-            fontSize: "4rem",
-            height: "200px",
+            fontSize: "1rem",
+            height: "160px",
             width: "80%",
             display: "flex",
             borderRadius: "3px",
@@ -113,11 +123,12 @@ export default function ControlPanel({
               display: "flex",
               flexDirection: "column",
               borderRadius: "10px",
-              border: "inset silver 5px"
+              border: "inset silver 5px",
+              fontSize: "1rem"
             }}
           >
             <SizeSlider delay={delay} setSize={setSize} />
-            <Spacer />
+            <div height="45px" style={{ height: "25px" }} />
             <SpeedSlider delay={delay} setSpeed={setSpeed} />
           </div>
           <div
@@ -126,10 +137,10 @@ export default function ControlPanel({
               flex: "2 10 20%",
               display: "flex",
               flexDirection: "column",
-              placeContent: "center",
               justifyContent: "space-evenly",
-              padding: ".1rem .4rem",
-              fontSize: "3.6rem",
+              textAlign: "start",
+              padding: "0rem .4rem",
+              fontSize: "3rem",
               border: "inset silver 5px",
               borderRadius: "10px",
               color: "silver",
@@ -139,18 +150,20 @@ export default function ControlPanel({
           >
             <label htmlFor="generation">generation</label>
             <label htmlFor="cells-per-row">cells / row</label>
-            <label htmlFor="totalCells">Population</label>
-            <label htmlFor="delay">Life Span</label>
+            <label htmlFor="totalCells">population</label>
+            <label htmlFor="delay">life span</label>
+            <label htmlFor="delay">time</label>
           </div>
           <div
             className="controlPanelSubBox_Data"
             style={{
               flex: "1 10 10%",
+              padding: "0rem .4rem",
               display: "flex",
               flexDirection: "column",
               backgroundColor: "indigo",
               justifyContent: "space-evenly",
-              fontSize: "3.6rem",
+              fontSize: "3rem",
               color: "snow",
               textShadow: `1px 1px 1px white,
                 -1px -1px 1px black
@@ -163,6 +176,7 @@ export default function ControlPanel({
             <div id="cells-per-row">{rowLen}</div>
             <div id="totalCells">{gridSIZE}</div>
             <div id="delay">{delay}ms</div>
+            <Timer state={state} />
           </div>
         </section>
       </HStack>

@@ -4,7 +4,7 @@ import { setGRID } from "../utils/setGRID";
 export function init() {
   const initialState = {
     bufferHASH: calcNEXT(setGRID(400)),
-    delay: 500,
+    delay: 6,
     generation: 0,
     gridHASH: { ...setGRID(400) },
     gridSIZE: 400,
@@ -16,7 +16,7 @@ export function init() {
 
 export const initialState = {
   bufferHASH: calcNEXT(setGRID(400)),
-  delay: 500,
+  delay: 6,
   generation: 0,
   gridHASH: { ...setGRID(400) },
   gridSIZE: 400,

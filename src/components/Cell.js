@@ -7,7 +7,7 @@ export default function Cell({ cellID, val, state, dispatch }) {
     border: "inset indigo 3px",
     color: "transparent",
     flex: `0 ${state.rowLen} ${cellWidth}%`,
-    fontSize: cellWidth * 3 + "px",
+    fontSize: cellWidth * 2.5 + "px",
     width: `${100 / state.rowLen}%`,
     height: `${100 / state.rowLen}%`,
     textAlign: "center",
