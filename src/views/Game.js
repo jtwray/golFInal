@@ -62,9 +62,21 @@ export default function Game() {
       animate="visible"
       exit="exit"
     >
+      <h2
+        style={{
+          textJustify: "left",
+          fontSize: "2rem",
+          width: "100%",
+          marginBottom: "1rem",
+          display: "flex",
+          alignItems: "flex-start",
+          justifyContent: "flex-start",
+          borderBottom: "solid orange 3px"
+        }}
+      >
+        Game Of Life-Cellular Automata{" "}
+      </h2>
       <div style={{ fontSize: "36px" }}>
-        <h2>Game Of Life-Cellular Automata </h2>
-        <Timer state={state} />
         <ControlPanel
           random={random}
           clear={clear}
