@@ -20,15 +20,5 @@ export default function Timer(props) {
     props.state.generation === 0 ? setTimeElapsed(0) : null;
   }, [props.state.isRunning]);
 
-  return (
-    <>
-      <button onClick={() => setTimerRunning(!timerRunning)}>
-        {props.state.isRunning ? "stop" : "start"}
-      </button>
-      <div id="timeElapsed">
-        <label htmlFor="timeElapsed">time elapsed:</label>
-        {timeElapsed}
-      </div>
-    </>
-  );
+  return <div>{timeElapsed}</div>;
 }
