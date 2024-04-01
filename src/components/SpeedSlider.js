@@ -8,13 +8,12 @@ import {
   Icon,
   useToast
 } from "@chakra-ui/react";
-import { MdGraphicEq, Alert } from "react-icons";
 import ToolTip from "./ToolTip";
 export default function SpeedSlider({ setSpeed, delay }) {
   const toast = useToast();
 
   const [prevDelay, setPrevDelay] = useState(delay);
-
+  const [titleValue, setTitleValue] = React.useState(6);
   const handleChangeDelay = (newValue) => {
     setSpeed(newValue);
     setPrevDelay(newValue);
@@ -60,17 +59,19 @@ export default function SpeedSlider({ setSpeed, delay }) {
         <Slider
           onChange={(value) => {
             handleChangeDelay(value);
+            setTitleValue(value);
           }}
           id="speedSlider"
           defaultValue={30}
-          min={1}
+          min={6}
           max={2000}
+          title={titleValue}
         >
           <SliderTrack bg="red.100">
             <SliderFilledTrack bg="tomato" />
           </SliderTrack>
-          <SliderThumb boxSize={6}>
-            <Box color="tomato" as={MdGraphicEq} />
+          <SliderThumb boxSize={6} fontSize={"1.2rem"}>
+            🔘
           </SliderThumb>
         </Slider>
       </div>
@@ -83,7 +84,7 @@ export default function SpeedSlider({ setSpeed, delay }) {
       >
         <label
           style={{
-            fontSize: "3.5rem",
+            fontSize: "2rem",
             textShadow: "-1px -1px 1px black,1px 1px 1px white",
             flex: "0 2 45%",
             fontWeight: "500"
@@ -98,7 +99,6 @@ export default function SpeedSlider({ setSpeed, delay }) {
           }
           iconFontSize={"2.0rem"}
           placement={"right"}
-          icon={Alert}
           messageFontSize={"2.5rem"}
         />
       </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import {
   Button,
   Input,
@@ -9,16 +10,26 @@ import {
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
-  useDisclosure
+  useDisclosure,
+  Flex
 } from "@chakra-ui/react";
-
 export default function InfoDrawer() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
 
   return (
     <>
-      <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
+      <Button
+        position="fixed"
+        right="1%"
+        top="25px"
+        border="outset 3px grey"
+        boxShadow="1px -1px 3px indigo,-1px 1px 3px white"
+        width="50px"
+        ref={btnRef}
+        colorScheme="purple"
+        onClick={onOpen}
+      >
         Open
       </Button>
       <Drawer
@@ -30,18 +41,21 @@ export default function InfoDrawer() {
         <DrawerOverlay>
           <DrawerContent>
             <DrawerCloseButton />
-            <DrawerHeader>Create your account</DrawerHeader>
 
             <DrawerBody>
-              <Input placeholder="Type here..." />
+              <Flex
+                className="drawerNavLinks"
+                style={{
+                  flexDirection: "column",
+                  fontSize: "5rem",
+                  color: "indigo"
+                }}
+              >
+                <NavLink to="/game">Game</NavLink>
+                <NavLink to="/rules">Rules</NavLink>
+                <NavLink to="/about">About</NavLink>
+              </Flex>
             </DrawerBody>
-
-            <DrawerFooter>
-              <Button variant="outline" mr={3} onClick={onClose}>
-                Cancel
-              </Button>
-              <Button color="blue">Save</Button>
-            </DrawerFooter>
           </DrawerContent>
         </DrawerOverlay>
       </Drawer>

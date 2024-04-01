@@ -6,13 +6,13 @@ import {
   Box,
   SliderFilledTrack
 } from "@chakra-ui/react";
-import { Alert, MdGraphicEq } from "react-icons";
 import ToolTip from "./ToolTip";
 export default function SizeSlider({ setSize }) {
   // const toast = useToast();
-
+  const [titleValue, setTitleValue] = React.useState(400);
   const handleChangeSize = (newValue) => {
-    setSize(newValue);
+    setSize(newValue * newValue);
+    setTitleValue(newValue);
   };
 
   return (
@@ -26,7 +26,7 @@ export default function SizeSlider({ setSize }) {
       >
         <label
           style={{
-            fontSize: "3.5rem",
+            fontSize: "2rem",
             textShadow: "-1px -1px 1px black,1px 1px 1px white",
 
             fontWeight: "500",
@@ -44,7 +44,6 @@ export default function SizeSlider({ setSize }) {
           }
           iconFontSize={"2.0rem"}
           placement={"left"}
-          icon={Alert}
           messageFontSize={"2.5rem"}
         />
       </div>
@@ -60,18 +59,22 @@ export default function SizeSlider({ setSize }) {
       >
         <Slider
           onChange={(value) => {
-            setSize(value);
+            setSize(value ** 2);
+            setTitleValue(value);
           }}
           id="speedSlider"
           defaultValue={30}
           min={5}
           max={40}
+          title={titleValue}
         >
           <SliderTrack bg="red.100">
             <SliderFilledTrack bg="tomato" />
           </SliderTrack>
-          <SliderThumb boxSize={6}>
-            <Box color="tomato" as={MdGraphicEq} />
+          <SliderThumb boxSize={6} fontSize={"1.2rem"}>
+            <span role="img" aria-hidden aria-label="change gamespeed">
+              🔘
+            </span>
           </SliderThumb>
         </Slider>
       </div>
