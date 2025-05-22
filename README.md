@@ -1,2 +1,2 @@
-# GOL_TestDrivenDevelopment
+# GOL react
 Created with CodeSandbox
