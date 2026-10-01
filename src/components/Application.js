@@ -1,20 +1,15 @@
 import React from "react";
-import { Route, useLocation, useRouteMatch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import Game from "../views/Game";
 import About from "../views/About";
 import Rules from "../views/Rules";
-import { AnimatePresence, motion } from "framer-motion";
-
-export default function Application({ state, dispatch }) {
-  const location = useLocation();
-
+export default function Application() {
   return (
-    <AnimatePresence key={location.key} exitBeforeEnter>
-      <Route key="2" path="/game">
-        <Game state={state} dispatch={dispatch} />
-      </Route>
-      <Route key="3" path="/about" component={About} />
-      <Route key="4" path="/rules" component={Rules} />
-    </AnimatePresence>
+    <Switch>
+      <Route exact path="/" render={() => <Redirect to="/game" />} />
+      <Route path="/game" component={Game} />
+      <Route path="/rules" component={Rules} />
+      <Route path="/about" component={About} />
+    </Switch>
   );
 }
