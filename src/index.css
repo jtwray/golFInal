@@ -14,18 +14,72 @@ body {
   background-size: cover;
 }
 .drawerNavLinks a {
-  text-shadow: 0.4px 0.4px 1px white;
+  display: block;
+  padding: 0.65rem 0.8rem;
+  border-radius: 0.4rem;
+  color: #242047;
+  font-size: 22px;
+  line-height: 1.4;
+  text-decoration: none;
 }
-.drawerNavLinks a:hover {
-  filter: invert(90%);
-  transform: filter;
-  transition: 0.3s ease;
+.drawerNavLinks a:hover,
+.drawerNavLinks a:focus-visible {
+  background: #e6ddff;
 }
 
-.active {
-  text-shadow: -1px -1px 0px white, 1.2px -1.2px 1px silver,
-    -1.2px 1.2px 1px black;
-  border-bottom: grey 1px solid;
+.drawerNavLinks a.active {
+  background: #44337a;
+  color: white;
+  font-weight: 700;
+}
+
+.drawerNavLinks a:focus-visible,
+.informationPage a:focus-visible {
+  outline: 3px solid #d69e2e;
+  outline-offset: 2px;
+}
+
+.informationPage {
+  width: min(42rem, 100%);
+  margin: 1rem auto 2rem;
+  padding: clamp(1rem, 4vw, 2rem);
+  border-radius: 0.75rem;
+  background: #f7f7fb;
+  color: #1a202c;
+  text-align: left;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.informationPage h1 {
+  font-size: clamp(28px, 6vw, 40px);
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.informationPage h2 {
+  font-size: 22px;
+  margin-top: 1.5rem;
+}
+
+.informationPage p,
+.informationPage li,
+.informationPage a,
+.informationPage strong {
+  font-size: inherit;
+}
+
+.informationPage ul {
+  padding-left: 1.5rem;
+}
+
+.informationPage li {
+  margin-bottom: 0.6rem;
+}
+
+.informationPage a {
+  color: #44337a;
+  text-decoration: underline;
 }
 
 .hamburger.controls.drawer {
