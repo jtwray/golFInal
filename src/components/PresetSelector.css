@@ -1,0 +1,59 @@
+.presetControls {
+  width: 500px;
+  max-width: 100%;
+  margin: 0 auto 16px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border: 2px solid #44337a;
+  border-radius: 8px;
+  background: #f7f7fb;
+  color: #1a202c;
+  text-align: left;
+}
+
+.presetControls label {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.presetControls select,
+.presetControls button {
+  width: 100%;
+  min-height: 44px;
+  margin-top: 8px;
+  padding: 6px 10px;
+  font-size: 16px;
+  border: 1px solid #44337a;
+  border-radius: 4px;
+}
+
+.presetControls option {
+  font-size: 16px;
+}
+
+.presetControls button {
+  background: #44337a;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.presetControls button:hover,
+.presetControls button:focus-visible {
+  background: #32235c;
+}
+
+.presetControls select:focus-visible,
+.presetControls button:focus-visible {
+  outline: 3px solid #d69e2e;
+  outline-offset: 2px;
+}
+
+.presetControls p {
+  margin: 8px 0 0;
+  font-size: 15px;
+  line-height: 1.4;
+}

@@ -4,6 +4,7 @@ import { ButtonGroup, Spacer, Button, HStack } from "@chakra-ui/react";
 import SpeedSlider from "./SpeedSlider";
 import SizeSlider from "./SizeSlider";
 import Timer from "./Timer";
+import PresetSelector from "./PresetSelector";
 
 export default function ControlPanel({
   toggleStart,
@@ -18,10 +19,12 @@ export default function ControlPanel({
   dispatch,
   setSpeed,
   setSize,
+  onLoadPreset,
   state
 }) {
   return (
     <>
+      <PresetSelector onLoad={onLoadPreset} />
       <HStack
         display="flex"
         w="500px"

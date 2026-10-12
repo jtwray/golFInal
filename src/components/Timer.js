@@ -23,7 +23,7 @@ export default function Timer(props) {
     if (props.state.generation === 0) {
       setTimeElapsed("0.00");
     }
-  }, [props.state.isRunning, props.state.generation]);
+  }, [props.state.isRunning, props.state.generation, props.state.timerResetKey]);
 
   return <div>{timeElapsed}</div>;
 }

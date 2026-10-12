@@ -8,7 +8,8 @@ export function init() {
     gridHASH: { ...setGRID(400) },
     gridSIZE: 400,
     isRunning: false,
-    rowLen: 20
+    rowLen: 20,
+    timerResetKey: 0
   };
   return initialState;
 }
@@ -20,5 +21,6 @@ export const initialState = {
   gridHASH: { ...setGRID(400) },
   gridSIZE: 400,
   isRunning: false,
-  rowLen: 20
+  rowLen: 20,
+  timerResetKey: 0
 };

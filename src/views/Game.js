@@ -19,6 +19,11 @@ export default function Game() {
     dispatch({ type: "SETSIZE", payload: rowLen });
   };
 
+  const loadPreset = (presetId) => {
+    stop();
+    dispatch({ type: "LOAD_PRESET", payload: presetId });
+  };
+
   const toggleStart = () => {
     if (state.isRunning) {
       dispatch({ type: "STOP" });
@@ -86,6 +91,7 @@ export default function Game() {
           dispatch={dispatch}
           setSpeed={setSpeed}
           setSize={setSize}
+          onLoadPreset={loadPreset}
           state={state}
         />
         <Grid state={state} dispatch={dispatch} />

@@ -1,5 +1,6 @@
 import { calcNEXT } from "../utils/calcNEXT";
 import { setGRID } from "../utils/setGRID";
+import { presets } from "../data/presets";
 import { initialState } from "./initialState";
 
 export function gridReducer(state = initialState, action) {
@@ -47,7 +48,36 @@ export function gridReducer(state = initialState, action) {
         rowLen,
         gridSIZE,
         generation: 0,
-        isRunning: false
+        isRunning: false,
+        timerResetKey: (state.timerResetKey || 0) + 1
+      };
+    }
+    case "LOAD_PRESET": {
+      const preset = presets[action.payload];
+      if (!preset) return state;
+
+      const height = preset.rows.length;
+      const width = preset.rows[0].length;
+      const rowLen = Math.max(state.rowLen, 5, height + 2, width + 2);
+      const gridHASH = setGRID(rowLen * rowLen);
+      const top = Math.floor((rowLen - height) / 2);
+      const left = Math.floor((rowLen - width) / 2);
+
+      preset.rows.forEach((row, y) => {
+        for (let x = 0; x < width; x++) {
+          if (row[x] === "O") gridHASH[`box${(top + y) * rowLen + left + x}`] = 1;
+        }
+      });
+
+      return {
+        ...state,
+        gridHASH,
+        bufferHASH: calcNEXT(gridHASH),
+        rowLen,
+        gridSIZE: rowLen * rowLen,
+        generation: 0,
+        isRunning: false,
+        timerResetKey: (state.timerResetKey || 0) + 1
       };
     }
     case "SETSPEED":
