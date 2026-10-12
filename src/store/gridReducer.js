@@ -1,4 +1,5 @@
 import { calcNEXT } from "../utils/calcNEXT";
+import { setGRID } from "../utils/setGRID";
 import { initialState } from "./initialState";
 
 export function gridReducer(state = initialState, action) {
@@ -9,19 +10,17 @@ export function gridReducer(state = initialState, action) {
     case "STOP":
       console.log("CASE STOP");
       return { ...state, isRunning: false };
-    case "TOGGLECELL":
-      console.log("CASE TOGGLECELL", action.payload);
+    case "TOGGLECELL": {
+      const gridHASH = {
+        ...state.gridHASH,
+        [action.payload.cellID]: action.payload.val
+      };
       return {
         ...state,
-        gridHASH: {
-          ...state.gridHASH,
-          ...{ [action.payload.cellID]: action.payload.val }
-        },
-        bufferHASH: {
-          ...state.bufferHASH,
-          ...{ [action.payload.cellID]: action.payload.val }
-        }
+        gridHASH,
+        bufferHASH: calcNEXT(gridHASH)
       };
+    }
     case "RANDOM":
       console.log("CASE RANDOM");
       return {
@@ -37,12 +36,20 @@ export function gridReducer(state = initialState, action) {
         bufferHASH: { ...action.payload },
         generation: 0
       };
-    case "SETSIZE":
-      console.log("CASE SETSIZE");
+    case "SETSIZE": {
+      const rowLen = action.payload;
+      const gridSIZE = rowLen * rowLen;
+      const gridHASH = setGRID(gridSIZE);
       return {
         ...state,
-        gridSIZE: action.payload
+        gridHASH,
+        bufferHASH: calcNEXT(gridHASH),
+        rowLen,
+        gridSIZE,
+        generation: 0,
+        isRunning: false
       };
+    }
     case "SETSPEED":
       console.log("CASE SETSPEED");
       return {

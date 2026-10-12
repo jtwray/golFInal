@@ -1,35 +1,31 @@
 import React, { useReducer } from "react";
 import { gridReducer } from "../store/gridReducer";
-import { initialState, init } from "../store/initialState";
+import { initialState } from "../store/initialState";
 import { motion } from "framer-motion";
 import { containerVariants } from "../utils/styleVariants";
 import Grid from "../components/Grid";
 import ControlPanel from "../components/ControlPanel";
 import { useAniFrame } from "../utils/useAnimationLoop";
-import Timer from "../components/Timer";
 
 export default function Game() {
   const [state, dispatch] = useReducer(gridReducer, initialState);
 
   const next = () => dispatch({ type: "NEXT" });
 
-  const [step, start, stop] = useAniFrame(next, state.delay, state);
+  const [step, start, stop] = useAniFrame(next, state.delay);
 
-  const setSize = (size) => {
-    console.log({ size });
-    size && dispatch({ type: "SETSIZE", payload: size });
+  const setSize = (rowLen) => {
+    stop();
+    dispatch({ type: "SETSIZE", payload: rowLen });
   };
 
   const toggleStart = () => {
     if (state.isRunning) {
       dispatch({ type: "STOP" });
-      dispatch({ type: "STOP_TIMER" });
-
       stop();
     }
     if (!state.isRunning) {
       dispatch({ type: "START" });
-      dispatch({ type: "START_TIMER" });
       start();
     }
   };

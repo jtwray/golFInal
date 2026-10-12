@@ -1,11 +1,9 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState } from "react";
 import {
   Slider,
   SliderTrack,
   SliderThumb,
-  Box,
   SliderFilledTrack,
-  Icon,
   useToast
 } from "@chakra-ui/react";
 import ToolTip from "./ToolTip";
@@ -71,7 +69,7 @@ export default function SpeedSlider({ setSpeed, delay }) {
             <SliderFilledTrack bg="tomato" />
           </SliderTrack>
           <SliderThumb boxSize={6} fontSize={"1.2rem"}>
-            🔘
+            <span role="img" aria-label="speed">🔘</span>
           </SliderThumb>
         </Slider>
       </div>

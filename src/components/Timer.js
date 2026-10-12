@@ -4,14 +4,14 @@ export default function Timer(props) {
   const [timeElapsed, setTimeElapsed] = React.useState("0.00");
   let delayInMilliseconds = Number(props.state.delay / 1000);
   React.useEffect(() => {
-    props.state.isRunning &&
-      setTimeout(
-        () =>
-          setTimeElapsed(
-            (Number(timeElapsed) + delayInMilliseconds).toFixed(2)
-          ),
-        props.state.delay
-      );
+    if (!props.state.isRunning) return;
+    const timeout = setTimeout(
+      () => setTimeElapsed((elapsed) =>
+        (Number(elapsed) + delayInMilliseconds).toFixed(2)
+      ),
+      props.state.delay
+    );
+    return () => clearTimeout(timeout);
   }, [
     timeElapsed,
     delayInMilliseconds,
@@ -21,7 +21,7 @@ export default function Timer(props) {
 
   React.useEffect(() => {
     if (props.state.generation === 0) {
-      setTimeElapsed(0);
+      setTimeElapsed("0.00");
     }
   }, [props.state.isRunning, props.state.generation]);
 
