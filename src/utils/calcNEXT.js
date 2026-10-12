@@ -1,32 +1,32 @@
-export function calcNEXT(gridARG) {
-  let gridHASH = gridARG;
-  let newGrid = { ...gridHASH };
-  let gridARR = Object.keys(gridHASH);
-  let gridSIZE = gridARR.length;
-  let rowLen = Math.sqrt(gridSIZE);
+export function calcNEXT(gridHASH) {
+  const cells = Object.keys(gridHASH);
+  const rowLen = Math.sqrt(cells.length);
+  const nextGrid = {};
 
-  for (let idx = 0; idx < gridSIZE; idx++) {
-    let nbrs = [
-      gridHASH[gridARR[`${idx - (rowLen + 1)}`]] || 0,
-      gridHASH[gridARR[`${idx - rowLen}`]] || 0,
-      gridHASH[gridARR[`${idx - (rowLen - 1)}`]] || 0,
-      gridHASH[gridARR[`${idx - 1}`]] || 0,
-      gridHASH[gridARR[`${idx + 1}`]] || 0,
-      gridHASH[gridARR[`${idx + (rowLen - 1)}`]] || 0,
-      gridHASH[gridARR[`${idx + rowLen}`]] || 0,
-      gridHASH[gridARR[`${idx + (rowLen + 1)}`]] || 0
-    ];
+  for (let index = 0; index < cells.length; index++) {
+    const row = Math.floor(index / rowLen);
+    const column = index % rowLen;
+    let liveNeighbors = 0;
 
-    let liveNBRSCOUNT = nbrs.reduce((acc, crrt) => (acc += crrt));
+    for (let rowOffset = -1; rowOffset <= 1; rowOffset++) {
+      for (let columnOffset = -1; columnOffset <= 1; columnOffset++) {
+        if (rowOffset === 0 && columnOffset === 0) continue;
 
-    if (liveNBRSCOUNT == 3) {
-      newGrid[gridARR[idx]] = 1;
-    } else if (liveNBRSCOUNT == 2) {
-      newGrid[gridARR[idx]] = gridHASH[gridARR[idx]];
-    } else {
-      newGrid[gridARR[idx]] = 0;
+        const neighborRow = row + rowOffset;
+        const neighborColumn = column + columnOffset;
+        if (
+          neighborRow >= 0 && neighborRow < rowLen &&
+          neighborColumn >= 0 && neighborColumn < rowLen
+        ) {
+          liveNeighbors += gridHASH[cells[neighborRow * rowLen + neighborColumn]];
+        }
+      }
     }
+
+    const cell = cells[index];
+    nextGrid[cell] = liveNeighbors === 3 ||
+      (liveNeighbors === 2 && gridHASH[cell] === 1) ? 1 : 0;
   }
 
-  return newGrid;
+  return nextGrid;
 }

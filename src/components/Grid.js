@@ -1,14 +1,6 @@
 import React from "react";
 import Cell from "./Cell";
 import { gridSubcontainer } from "../utils/styles";
-import {
-  Box,
-  ButtonGroup,
-  Button,
-  Stat,
-  StatLabel,
-  StatNumber
-} from "@chakra-ui/react";
 
 export default function Grid({ state, dispatch }) {
   return (

@@ -3,18 +3,10 @@ import {
   Slider,
   SliderTrack,
   SliderThumb,
-  Box,
   SliderFilledTrack
 } from "@chakra-ui/react";
 import ToolTip from "./ToolTip";
-export default function SizeSlider({ setSize }) {
-  // const toast = useToast();
-  const [titleValue, setTitleValue] = React.useState(400);
-  const handleChangeSize = (newValue) => {
-    setSize(newValue * newValue);
-    setTitleValue(newValue);
-  };
-
+export default function SizeSlider({ rowLen, setSize }) {
   return (
     <>
       <div
@@ -32,7 +24,7 @@ export default function SizeSlider({ setSize }) {
             fontWeight: "500",
             flex: "0 2 45%"
           }}
-          htmlFor="speedSlider"
+          htmlFor="sizeSlider"
         >
           Size
         </label>
@@ -58,21 +50,19 @@ export default function SizeSlider({ setSize }) {
         }}
       >
         <Slider
-          onChange={(value) => {
-            setSize(value ** 2);
-            setTitleValue(value);
-          }}
-          id="speedSlider"
-          defaultValue={30}
+          onChange={setSize}
+          id="sizeSlider"
+          value={rowLen}
           min={5}
           max={40}
-          title={titleValue}
+          title={rowLen}
+          aria-label="Cells per row"
         >
           <SliderTrack bg="red.100">
             <SliderFilledTrack bg="tomato" />
           </SliderTrack>
           <SliderThumb boxSize={6} fontSize={"1.2rem"}>
-            <span role="img" aria-hidden aria-label="change gamespeed">
+            <span aria-hidden="true">
               🔘
             </span>
           </SliderThumb>

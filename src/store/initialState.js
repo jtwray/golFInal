@@ -1,5 +1,4 @@
 import { calcNEXT } from "../utils/calcNEXT";
-import { gridSEED } from "../utils/gridSEED";
 import { setGRID } from "../utils/setGRID";
 export function init() {
   const initialState = {

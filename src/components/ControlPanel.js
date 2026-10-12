@@ -127,7 +127,7 @@ export default function ControlPanel({
               fontSize: "1rem"
             }}
           >
-            <SizeSlider delay={delay} setSize={setSize} />
+            <SizeSlider rowLen={rowLen} setSize={setSize} />
             <div height="45px" style={{ height: "25px" }} />
             <SpeedSlider delay={delay} setSpeed={setSpeed} />
           </div>
